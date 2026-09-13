@@ -9,7 +9,7 @@
       "version": "latest"
     }
   },
-  "postCreateCommand": "python -m pip install --upgrade pip && python -m pip install --upgrade numpy pandas scipy matplotlib scikit-learn jupyterlab ipykernel",
+  "postCreateCommand": "R -e 'install.packages(\"httpgd\", repos=\"https://cloud.r-project.org\")' && python -m pip install --upgrade pip && python -m pip install --upgrade numpy pandas scipy matplotlib scikit-learn jupyterlab ipykernel",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -17,7 +17,10 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-toolsai.jupyter"
-      ]
+      ],
+      "settings": {
+        "r.plot.useHttpgd": true
+      }
     }
   }
 }
