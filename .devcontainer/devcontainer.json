@@ -3,13 +3,13 @@
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
     "ghcr.io/rocker-org/devcontainer-features/r-apt:latest": {
-      "vscodeRSupport": "lsp"
+      "vscodeRSupport": "full"
     },
     "ghcr.io/devcontainers/features/python:latest": {
       "version": "latest"
     }
   },
-  "postCreateCommand": "R -e 'install.packages(\"httpgd\", repos=\"https://cloud.r-project.org\")' && python -m pip install --upgrade pip && python -m pip install --upgrade numpy pandas scipy matplotlib scikit-learn jupyterlab ipykernel",
+  "postCreateCommand": "install -m 0644 .Rprofile \"$HOME/.Rprofile\" && python -m pip install --upgrade pip && python -m pip install --upgrade numpy pandas scipy matplotlib scikit-learn jupyterlab ipykernel",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -17,10 +17,7 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-toolsai.jupyter"
-      ],
-      "settings": {
-        "r.plot.useHttpgd": true
-      }
+      ]
     }
   }
 }
