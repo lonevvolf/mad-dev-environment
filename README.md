@@ -1,6 +1,8 @@
-# MAD Development Environment
+# FH Technikum Wien — MAD Development Environment
 
-A shared R and Python development environment for students of the Artificial Intelligence & Data Science (MAD) Master's degree. This template contains environment configuration only; keep your coursework in your own repository.
+A shared R and Python development environment for students of the **Artificial Intelligence & Data Science (MAD) Master's degree at FH Technikum Wien** (University of Applied Sciences Technikum Wien). Use this GitHub template with GitHub Codespaces or VS Code Dev Containers throughout the degree.
+
+Maintained by a student for classmates; this is an unofficial community resource. This template contains environment configuration only; keep your coursework in your own repository.
 
 ## Start your own workspace
 
