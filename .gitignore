@@ -37,3 +37,6 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Default generated R plot output
+Rplots.pdf
