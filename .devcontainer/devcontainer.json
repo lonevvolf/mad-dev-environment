@@ -1,0 +1,23 @@
+{
+  "name": "MAD Masters Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/rocker-org/devcontainer-features/r-apt:latest": {
+      "vscodeRSupport": "lsp"
+    },
+    "ghcr.io/devcontainers/features/python:latest": {
+      "version": "latest"
+    }
+  },
+  "postCreateCommand": "python -m pip install --upgrade pip && python -m pip install --upgrade numpy pandas scipy matplotlib scikit-learn jupyterlab ipykernel",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "REditorSupport.r",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}
