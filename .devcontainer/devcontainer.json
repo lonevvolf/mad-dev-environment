@@ -1,7 +1,9 @@
 {
   "name": "MAD Masters Development",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "forwardPorts": [6080],
   "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {},
     "ghcr.io/rocker-org/devcontainer-features/r-apt:latest": {
       "vscodeRSupport": "full"
     },
