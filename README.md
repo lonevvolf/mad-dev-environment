@@ -32,14 +32,20 @@ Versions intentionally track latest releases. Rebuilds may install newer version
 ## R sessions and plots in VS Code
 
 Use the stable **REditorSupport.r** extension (3.0.1 or later stable 3.x).
-The container installs stable `jgd` from [CRAN](https://cran.r-project.org/package=jgd)
-through [`.devcontainer/setup-r.R`](.devcontainer/setup-r.R).
+The image build installs stable `jgd` from [CRAN](https://cran.r-project.org/package=jgd)
+and `sess` 3.0.1 with its dependencies from the
+[official vscode-R v3.0.1 release](https://github.com/REditorSupport/vscode-R/tree/v3.0.1/sess).
+Rocker's `r-packages` feature runs after R is installed, so these packages are
+included in the built image rather than installed when a terminal first opens.
+[`.devcontainer/setup-r.R`](.devcontainer/setup-r.R) checks availability and
+migrates the old home profile.
 Rocker's full R support retains `languageserver` and `httpgd`; if needed,
 select `r.plot.backend: "auto"` to prefer jgd with httpgd as a supported fallback.
 
 The configured settings are `r.sessionWatcher: true` and `r.plot.backend: "jgd"`.
-The extension installs/updates its bundled `sess` package when needed.
-Accept its installation prompt when starting **R: Create R terminal**.
+Fresh workspaces already have `sess` installed. Start **R: Create R terminal**.
+A newer extension may offer to update `sess` when its bundled version changes;
+keep the pinned stable source in the image configuration in step with extension upgrades.
 
 Run in that managed terminal:
 

@@ -7,6 +7,11 @@
     },
     "ghcr.io/devcontainers/features/python:latest": {
       "version": "latest"
+    },
+    "ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
+      "packages": "cran::jgd,sess=github::REditorSupport/vscode-R/sess@v3.0.1",
+      "pakVersion": "stable",
+      "cranMirror": "https://cloud.r-project.org"
     }
   },
   "postCreateCommand": "Rscript --vanilla .devcontainer/setup-r.R && python -m pip install --upgrade pip && python -m pip install --upgrade numpy pandas scipy matplotlib scikit-learn jupyterlab ipykernel",

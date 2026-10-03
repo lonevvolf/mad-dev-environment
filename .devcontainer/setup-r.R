@@ -1,14 +1,9 @@
-# Install the stable graphics device; vscode-R manages its bundled sess package.
-repos <- c(CRAN = "https://cloud.r-project.org")
-user_library <- path.expand(Sys.getenv("R_LIBS_USER"))
-if (!nzchar(user_library)) stop("R_LIBS_USER must name the user package library")
-dir.create(user_library, recursive = TRUE, showWarnings = FALSE)
-.libPaths(c(user_library, .libPaths()))
-if (!requireNamespace("jgd", quietly = TRUE)) {
-  install.packages("jgd", repos = repos, lib = user_library)
-}
-stopifnot(requireNamespace("jgd", quietly = TRUE))
-message("jgd ", packageVersion("jgd"), " available")
+# R packages are installed in the image by the Rocker r-packages feature.
+# sess is taken from the official stable vscode-R v3.0.1 release.
+stopifnot(requireNamespace("jgd", quietly = TRUE),
+          requireNamespace("sess", quietly = TRUE),
+          packageVersion("sess") >= "3.0.1")
+message("jgd ", packageVersion("jgd"), " and sess ", packageVersion("sess"), " available")
 
 # Earlier containers copied this exact profile into the persisted home directory.
 # Back it up only when it is unchanged; preserve custom user profiles.
