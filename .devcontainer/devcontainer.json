@@ -1,9 +1,7 @@
 {
   "name": "MAD Masters Development",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "forwardPorts": [6080],
   "features": {
-    "ghcr.io/devcontainers/features/desktop-lite:1": {},
     "ghcr.io/rocker-org/devcontainer-features/r-apt:latest": {
       "vscodeRSupport": "full"
     },
@@ -11,7 +9,7 @@
       "version": "latest"
     }
   },
-  "postCreateCommand": "install -m 0644 .Rprofile \"$HOME/.Rprofile\" && python -m pip install --upgrade pip && python -m pip install --upgrade numpy pandas scipy matplotlib scikit-learn jupyterlab ipykernel",
+  "postCreateCommand": "Rscript --vanilla .devcontainer/setup-r.R && python -m pip install --upgrade pip && python -m pip install --upgrade numpy pandas scipy matplotlib scikit-learn jupyterlab ipykernel",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -19,7 +17,11 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-toolsai.jupyter"
-      ]
+      ],
+      "settings": {
+        "r.sessionWatcher": true,
+        "r.plot.backend": "jgd"
+      }
     }
   }
 }
