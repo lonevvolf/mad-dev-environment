@@ -86,3 +86,30 @@ To adopt an update, compare the shared `.devcontainer/devcontainer.json` and `.d
 Add shared tools, libraries, and extensions to the dev-container configuration as courses need them. Document new dependencies and setup steps here, and test a fresh container after making changes. Keep assignments, solutions, datasets, credentials, and personal notes in individual coursework repositories.
 
 This is a configuration template, not a published prebuilt container image. The repository provides the instructions Codespaces uses to build each student's environment.
+
+## Docker inside the development container
+
+The official [Docker-in-Docker feature](https://github.com/devcontainers/features/tree/main/src/docker-in-docker)
+installs the Docker CLI, an independent Docker/Moby daemon, Buildx, Compose,
+and the VS Code Container Tools extension. This supports building and running
+containers from a Codespace terminal, including bind mounts using workspace paths.
+The feature manages privileged mode, daemon startup, and dedicated Docker/containerd
+storage volumes; no host Docker socket or manual daemon startup is required.
+
+For an existing Codespace, save your work, pull these changes, and run
+**Codespaces: Rebuild Container**. Locally, run **Dev Containers: Rebuild Container**.
+The Docker feature is installed during the image build, so pulling alone is insufficient.
+After rebuilding, run this from the repository root as your normal development user:
+
+```bash
+bash .devcontainer/test-docker.sh
+```
+
+The smoke test checks `docker version`, `docker info`, Compose, and Buildx, then
+builds and runs a small Alpine container and checks its output. It removes its
+test image on exit; the pulled Alpine base image remains cached. Internet access
+to pull the base image is required. This test must be run inside the rebuilt
+devcontainer; host Docker results do not validate Codespaces.
+
+Docker images and volumes are separate from coursework files. Treat them as
+rebuildable data, especially when deleting or recreating a Codespace.
