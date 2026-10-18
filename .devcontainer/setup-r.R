@@ -2,8 +2,10 @@
 # sess is taken from the official stable vscode-R v3.0.1 release.
 stopifnot(requireNamespace("jgd", quietly = TRUE),
           requireNamespace("sess", quietly = TRUE),
+          requireNamespace("car", quietly = TRUE),
           packageVersion("sess") >= "3.0.1")
 message("jgd ", packageVersion("jgd"), " and sess ", packageVersion("sess"), " available")
+message("car ", packageVersion("car"), " available")
 
 # Earlier containers copied this exact profile into the persisted home directory.
 # Back it up only when it is unchanged; preserve custom user profiles.

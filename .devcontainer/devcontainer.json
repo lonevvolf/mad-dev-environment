@@ -1,16 +1,18 @@
 {
   "name": "MAD Masters Development",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:4": {},
     "ghcr.io/rocker-org/devcontainer-features/r-apt:latest": {
       "vscodeRSupport": "full"
     },
-    "ghcr.io/devcontainers/features/python:latest": {
-      "version": "latest"
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.14.7"
     },
     "ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
-      "packages": "cran::jgd,sess=github::REditorSupport/vscode-R/sess@v3.0.1",
+      "packages": "cran::jgd,sess=github::REditorSupport/vscode-R/sess@v3.0.1,cran::car",
       "pakVersion": "stable",
       "cranMirror": "https://cloud.r-project.org"
     }
@@ -26,7 +28,10 @@
       ],
       "settings": {
         "r.sessionWatcher": true,
-        "r.plot.backend": "jgd"
+        "r.plot.backend": "jgd",
+        "autopep8.interpreter": [
+          "/usr/local/python/current/bin/python"
+        ]
       }
     }
   }

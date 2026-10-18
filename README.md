@@ -20,14 +20,14 @@ For local use, clone your own repository, install Docker and the VS Code Dev Con
 
 - Ubuntu base: `mcr.microsoft.com/devcontainers/base:ubuntu`
 - R through the latest Rocker `r-apt` feature, with `languageserver` support
-- Latest Python through the official Python feature
+- Python 3.14.7 through the official Python feature v1
 - Latest pip, numpy, pandas, scipy, matplotlib, scikit-learn, jupyterlab, and ipykernel
 - VS Code extensions for R, Python, Pylance, and Jupyter
 - Stable vscode-R 3.x with its bundled `sess` session bridge and CRAN `jgd` graphics
 
 Configuration lives in [`.devcontainer/devcontainer.json`](.devcontainer/devcontainer.json). Run `R` or `python` in a terminal, or open a Python notebook and select its Python kernel.
 
-Versions intentionally track latest releases. Rebuilds may install newer versions; record or pin versions later if a course requires reproducibility.
+Python is pinned to 3.14.7 for formatter and virtual-environment compatibility. Other unpinned components may update when rebuilding; record or pin those separately if a course requires reproducibility.
 
 ## R sessions and plots in VS Code
 
@@ -113,3 +113,25 @@ devcontainer; host Docker results do not validate Codespaces.
 
 Docker images and volumes are separate from coursework files. Treat them as
 rebuildable data, especially when deleting or recreating a Codespace.
+
+## Python formatting and environment recovery
+
+See [the Python recovery guide](.devcontainer/python-formatting.md) for the
+Python version pin, formatter settings, rebuild checks, and recovery of virtual
+environments whose interpreter disappeared after a rebuild.
+
+## R package build dependencies
+
+The [devcontainer Dockerfile](.devcontainer/Dockerfile) installs gfortran,
+BLAS/LAPACK development libraries, CMake, and NLopt development files before
+the R features run. The R package feature preinstalls `car` alongside `jgd`
+and `sess`; setup checks that all three load successfully.
+
+Save your work and rebuild the container to apply image changes. Pulling the
+repository alone does not install system libraries in an existing container.
+After rebuilding, run `library(car)` and
+`car::vif(lm(mpg ~ wt + hp, data = mtcars))` in a fresh R session.
+
+A failed source install may leave a `00LOCK-<package>` directory in the R
+library. Check that no installation is running before moving a stale lock to
+a backup outside the library. Preserve coursework and existing package data.
